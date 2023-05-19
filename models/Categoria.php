@@ -6,7 +6,7 @@ class Categoria extends Conectar
     {
         $conectar = parent::Conexion();
         parent::set_names();
-        $sql = "SELECT * FROM tb_categoria WHERE est=1";
+        $sql = "SELECT cat_id as ID, cat_nom as Categoria, cat_obs as Observacion, est as Estado FROM tb_categoria WHERE est=1";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -16,9 +16,21 @@ class Categoria extends Conectar
     {
         $conectar = parent::Conexion();
         parent::set_names();
-        $sql = "SELECT * FROM tb_categoria WHERE est=1 AND cat_id = ?";
+        $sql = "SELECT cat_id as ID, cat_nom as Categoria, cat_obs as Observacion, est as Estado FROM tb_categoria WHERE est=1 AND cat_id = ?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $cat_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insert_categoria($cat_nom,$cat_obs)
+    {
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = "INSERT INTO tb_categoria (`cat_id`, `cat_nom`, `cat_obs`, `est`) values (NULL, ?, ?, '1')";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $cat_nom);
+        $sql->bindValue(2, $cat_obs);
         $sql->execute();
         return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }

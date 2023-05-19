@@ -18,6 +18,11 @@ switch ($_GET["op"]) {
         $datos = $categoria->get_categoria_by_id($body["cad_id"]);
         echo json_encode($datos);
     break;
+
+    case "InsertCat":
+        $datos = $categoria->insert_categoria($body["cat_nom"], $body["cat_obs"]);
+        echo json_encode(array('msg'=>'Registro Exitoso'));
+    break;
 }
 
 ?>
