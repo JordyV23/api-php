@@ -23,6 +23,17 @@ switch ($_GET["op"]) {
         $datos = $categoria->insert_categoria($body["cat_nom"], $body["cat_obs"]);
         echo json_encode(array('msg'=>'Registro Exitoso'));
     break;
+
+    case "UpdateCat":
+        $datos = $categoria->update_categoria($body["cat_nom"], $body["cat_obs"], $body["cat_id"]);
+        echo json_encode(array('msg'=>'Actualizacion Exitosa'));
+    break;
+
+    case "DeleteCat":
+        $datos = $categoria->delete_categoria($body["cat_id"]);
+        echo json_encode(array('msg'=>'Eliminacion Exitosa'));
+    break;
+
 }
 
 ?>
