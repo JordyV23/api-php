@@ -7,10 +7,10 @@ class Conectar
     protected function Conexion()
     {
         try {
-            $conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=webService", "jordy", "root");
+            $conectar = $this->dbh = new PDO("mysql:host=127.0.0.1;dbname=webService", "jordy", "1234");
             return $conectar;
         } catch (Exception $e) {
-            print "Erro en la db" . $e->getMessage();
+            print "Erro en la db: " . $e->getMessage();
             die();
         }
     }
